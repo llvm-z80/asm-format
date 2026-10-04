@@ -1,0 +1,58 @@
+# Microsoft MASM and compatible assemblers.
+
+comment = [
+    ';',
+    { begin = '(?i)\bcomment[ \t]+(\S)', end = '\1.*', multiline = true },
+]
+literal = [
+    { begin = '"', end = '"' },
+    { begin = "'", end = "'" },
+    { begin = '<', end = '>', escape = '!', nest = true },
+]
+label = [
+    '[\w$@?]+::?',
+    { begin = '[\w$@?]+', before = [
+        'db', 'dw', 'dd', 'df', 'dp', 'dq', 'dt',
+        'proc', 'endp', 'macro', 'equ', 'textequ', 'catstr', 'substr', 'instr', 'sizestr',
+        'segment', 'ends', 'struct', 'struc', 'union', 'record', 'typedef', 'label',
+        'group', 'proto',
+    ] },
+]
+continuation = ['\\']
+mnemonic = '(?i)(?:(?:rep(?:n?[ez])?|lock)\s+)*\S+'
+
+directive = [
+    '.*', 'db', 'dw', 'dd', 'df', 'dp', 'dq', 'dt', 'byte', 'sbyte', 'word', 'sword',
+    'dword', 'sdword', 'fword', 'qword', 'sqword', 'tbyte', 'real4', 'real8', 'real10',
+    'include', 'includelib', 'extern', 'externdef', 'extrn', 'public', 'proto', 'align',
+    'even', 'org', 'option', 'assume', 'end', 'title', 'subtitle', 'page', 'name',
+    'if*', 'elseif*', 'else', 'endif', 'macro', 'endm', 'exitm', 'local', 'purge',
+    'irp', 'irpc', 'for', 'forc', 'rept', 'repeat', 'while',
+]
+
+[[block]]
+begin = ['if*']
+middle = ['elseif*', 'else']
+end = ['endif']
+
+[[block]]
+begin = ['.if']
+middle = ['.elseif', '.else']
+end = ['.endif']
+
+[[block]]
+begin = ['.while']
+end = ['.endw']
+
+[[block]]
+begin = ['.repeat']
+end = ['.until', '.untilcxz']
+
+[[block]]
+begin = ['macro', 'irp', 'irpc', 'for', 'forc', 'rept', 'repeat', 'while']
+end = ['endm']
+
+[[block]]
+begin = ['struct', 'struc', 'union']
+end = ['ends']
+fields = true

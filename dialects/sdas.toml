@@ -1,0 +1,46 @@
+# The assemblers of SDCC, such as sdasz80 and sdasgb.
+
+comment = [';']
+literal = [
+    { begin = '''\B'(?:\\(?:[0-7]{1,3}|.)|.)''' },
+    { begin = '"(?:\\(?:[0-7]{1,3}|.)|.){2}' },
+]
+label = ['[\w.$]+::?']
+mnemonic = '[\w.$]+'
+
+directive = ['.*']
+
+[[block]]
+begin = [
+    '.if', '.ifeq', '.ifne', '.ifgt', '.iflt', '.ifge', '.ifle',
+    '.ifdef', '.ifndef', '.ifb', '.ifnb', '.ifidn', '.ifdif',
+]
+middle = ['.else', '.iff', '.ift', '.iftf']
+end = ['.endif']
+
+[[block]]
+begin = ['.macro', '.irp', '.irpc', '.rept']
+end = ['.endm']
+
+[[operands]]
+of = ['.ascii', '.asciz', '.ascis', '.str', '.strz', '.strs', '.fcc']
+literal = [{ begin = '(\S)', end = '\1' }]
+
+[[operands]]
+of = ['.include', '.incbin', '.msg']
+literal = [
+    { begin = '\^(.)', end = '\1' },
+    { begin = '([^\s;^])', end = '\1' },
+]
+
+[[operands]]
+of = ['.define']
+literal = [
+    { begin = '[\w.$]+\s*,?\s*\^(.)', end = '\1' },
+    { begin = '[\w.$]+(?:\s*,\s*|\s+)([^\s;^])', end = '\1' },
+    { begin = '[\w.$]+([^\w.$\s;^,])', end = '\1' },
+]
+
+[[operands]]
+of = ['.title', '.sbttl']
+literal = [{ begin = '\S.*' }]

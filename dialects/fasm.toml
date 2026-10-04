@@ -1,0 +1,42 @@
+# flat assembler.
+
+comment = [';']
+literal = [
+    { begin = '"', end = '"' },
+    { begin = "'", end = "'" },
+]
+label = [
+    '''[^\s+\-/*=<>()\[\]{}:,|&~#`;'"\\]+:''',
+    { begin = '''[^\s+\-/*=<>()\[\]{}:,|&~#`;'"\\]+''', before = [
+        'db', 'dw', 'du', 'dd', 'dp', 'df', 'dq', 'dt',
+        'rb', 'rw', 'rd', 'rp', 'rf', 'rq', 'rt',
+        'equ', 'label', 'file',
+    ] },
+]
+continuation = ['\\']
+mnemonic = '(?i)(?:(?:rep(?:n?[ez])?|lock)\s+)*\S+'
+
+directive = [
+    'db', 'dw', 'du', 'dd', 'dp', 'df', 'dq', 'dt', 'rb', 'rw', 'rd', 'rp', 'rf', 'rq',
+    'rt', 'file', 'include', 'format', 'entry', 'section', 'segment', 'org', 'align',
+    'use16', 'use32', 'use64', 'public', 'extrn', 'label', 'define', 'equ', 'fix',
+    'macro', 'struc', 'restore', 'purge', 'match', 'irp', 'irps', 'rept', 'if', 'else',
+    'end', 'repeat', 'while', 'break', 'virtual', 'display', 'assert', 'load', 'store',
+]
+
+[[block]]
+begin = ['if']
+middle = ['else']
+end = ['end if']
+
+[[block]]
+begin = ['repeat']
+end = ['end repeat']
+
+[[block]]
+begin = ['while']
+end = ['end while']
+
+[[block]]
+begin = ['virtual']
+end = ['end virtual']

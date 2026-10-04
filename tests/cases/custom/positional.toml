@@ -1,0 +1,8 @@
+comment = ['^\*']
+literal = ["'"]
+label = ['^\S+']
+positional = true
+
+[[operands]]
+of = ['rts']
+comment = ['\S']

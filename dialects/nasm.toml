@@ -1,0 +1,53 @@
+# NASM and YASM.
+
+comment = [';']
+literal = [
+    { begin = '"', end = '"' },
+    { begin = "'", end = "'" },
+    { begin = '`', end = '`', escape = '\' },
+]
+label = [
+    '(?:[\w.$#@~?]|%[%$!]*(?:[\w.$#@~?]+|\{[^}]*\}|\[[^\]]*\]))+:',
+    { begin = '(?:[\w.$#@~?]|%[%$!]*(?:[\w.$#@~?]+|\{[^}]*\}|\[[^\]]*\]))+', before = [
+        'db', 'dw', 'dd', 'dq', 'dt', 'do', 'dy', 'dz',
+        'resb', 'resw', 'resd', 'resq', 'rest', 'reso', 'resy', 'resz',
+        'equ', 'times', 'incbin', 'istruc',
+    ] },
+]
+continuation = ['\\']
+mnemonic = '(?i)(?:(?:\{\w+\}|rep(?:n?[ez])?|lock|bnd|nobnd|xacquire|xrelease|[cdefgs]s|[ao](?:16|32|64))\s+)*(?:\[[^\]]*\]|\S+)'
+
+directive = [
+    'db', 'dw', 'dd', 'dq', 'dt', 'do', 'dy', 'dz',
+    'resb', 'resw', 'resd', 'resq', 'rest', 'reso', 'resy', 'resz',
+    'equ', 'times', 'incbin', 'section', 'segment', 'global', 'extern', 'common',
+    'static', 'bits', 'use16', 'use32', 'use64', 'default', 'align', 'alignb', 'cpu',
+    'org', 'absolute', 'struc', 'endstruc', 'istruc', 'at', 'iend', '%*',
+]
+
+[[block]]
+begin = ['%if*']
+middle = ['%elif*', '%else']
+end = ['%endif']
+
+[[block]]
+begin = ['%macro', '%imacro', '%rmacro', '%irmacro']
+end = ['%endmacro', '%endm']
+
+[[block]]
+begin = ['%rep']
+end = ['%endrep']
+
+[[block]]
+begin = ['struc']
+end = ['endstruc']
+fields = true
+
+[[block]]
+begin = ['istruc']
+end = ['iend']
+fields = true
+
+[[operands]]
+of = ['%defstr', '%idefstr']
+literal = [{ begin = '[^\s;](?:[^;]*[^\s;])?' }]

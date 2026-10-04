@@ -1,0 +1,40 @@
+# The ca65 assembler of cc65.
+
+comment = [';']
+literal = [
+    { begin = '"', end = '"', escape = '\' },
+    { begin = ''''(?:\\.|.)'?''' },
+    { begin = '@?\w+[ \t]*:=' },
+    { begin = ',[ \t]*[sSxXyY]\b' },
+]
+label = ['(?:@?\w+)?:']
+continuation = ['\\$']
+
+directive = ['.*']
+
+[[block]]
+begin = ['.if*']
+middle = ['.elseif', '.else']
+end = ['.endif']
+
+[[block]]
+begin = ['.macro', '.mac']
+end = ['.endmacro', '.endmac']
+
+[[block]]
+begin = ['.repeat']
+end = ['.endrepeat', '.endrep']
+
+[[block]]
+begin = ['.struct']
+end = ['.endstruct']
+fields = true
+
+[[block]]
+begin = ['.union']
+end = ['.endunion']
+fields = true
+
+[[block]]
+begin = ['.enum']
+end = ['.endenum']

@@ -1,0 +1,36 @@
+# The z80asm assembler of z88dk.
+
+comment = [';', '//']
+literal = [
+    { begin = '"', end = '"', escape = '\' },
+    { begin = "\\B'", end = "'", escape = '\' },
+]
+label = [
+    '\.[ \t]*@?\w+(?:@\w+)?(?:[ \t]*:)?',
+    '@?\w+(?:@\w+)?[ \t]*:',
+    { begin = '@?\w+(?:@\w+)?', before = ['equ', 'defl', 'macro'] },
+]
+separator = ['\\', ':']
+continuation = ['\\$']
+
+directive = [
+    'defb', 'defw', 'defq', 'defm', 'defs', 'defc', 'defvars', 'defgroup', 'db', 'dw',
+    'dq', 'dm', 'ds', 'dc', 'byte', 'word', 'section', 'include', 'binary', 'incbin',
+    'public', 'global', 'extern', 'xdef', 'xref', 'xlib', 'lib', 'module', 'org',
+    'align', 'assert', 'if', 'ifdef', 'ifndef', 'elif', 'elifdef', 'elifndef', 'else',
+    'endif', 'macro', 'endm', 'local', 'rept', 'reptc', 'repti', 'endr', 'phase',
+    'dephase', 'c_line', 'line',
+]
+
+[[block]]
+begin = ['if', 'ifdef', 'ifndef']
+middle = ['elif', 'elifdef', 'elifndef', 'else']
+end = ['endif']
+
+[[block]]
+begin = ['macro']
+end = ['endm']
+
+[[block]]
+begin = ['rept', 'reptc', 'repti']
+end = ['endr']

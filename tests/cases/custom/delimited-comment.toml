@@ -1,0 +1,1 @@
+comment = [';', { begin = '(?i)^\s*comment\s+(\S)', end = '\1.*', multiline = true }]

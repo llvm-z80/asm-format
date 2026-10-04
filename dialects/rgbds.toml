@@ -1,0 +1,40 @@
+# RGBDS rgbasm.
+
+comment = [';', { begin = '/\*', end = '\*/', multiline = true }]
+literal = [
+    { begin = '"', end = '"', escape = '\', multiline = true },
+    { begin = '"""', end = '"""', escape = '\', multiline = true },
+    { begin = '#"', end = '"' },
+    { begin = '#"""', end = '"""', multiline = true },
+    { begin = "'", end = "'", escape = '\' },
+    { begin = '\\<[^>]*>' },
+    { begin = '\\\S' },
+]
+label = [
+    '(?:[\w.@#$]|\{[^}]*\}|\\(?:[1-9@#]|<[^>]*>))*::?',
+    '(?:[\w@#$]|\{[^}]*\}|\\(?:[1-9@#]|<[^>]*>))*\.(?:[\w@#$]|\{[^}]*\}|\\(?:[1-9@#]|<[^>]*>))+',
+]
+separator = ['::']
+continuation = ['\\']
+
+directive = [
+    'db', 'dw', 'dl', 'ds', 'def', 'redef', 'section', 'endsection', 'load', 'endl',
+    'union', 'nextu', 'endu', 'include', 'incbin', 'export', 'purge', 'charmap',
+    'newcharmap', 'setcharmap', 'pushc', 'popc', 'pushs', 'pops', 'pusho', 'popo',
+    'opt', 'rsreset', 'rsset', 'shift', 'fail', 'warn', 'assert', 'static_assert',
+    'print*', 'align', 'if', 'elif', 'else', 'endc', 'macro', 'endm', 'rept', 'for',
+    'endr', 'break',
+]
+
+[[block]]
+begin = ['if']
+middle = ['elif', 'else']
+end = ['endc']
+
+[[block]]
+begin = ['macro']
+end = ['endm']
+
+[[block]]
+begin = ['rept', 'for']
+end = ['endr']

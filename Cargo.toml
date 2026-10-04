@@ -1,0 +1,16 @@
+[package]
+name = "asm-format"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.89"
+description = "A universal assembly formatter"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/llvm-z80/asm-format"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+globset = "0.4"
+regex-automata = "0.4"
+serde = { version = "1", features = ["derive"] }
+serde-saphyr = { version = "1", default-features = false, features = ["deserialize"] }
+toml = "1"

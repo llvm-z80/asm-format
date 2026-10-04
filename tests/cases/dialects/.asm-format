@@ -1,0 +1,26 @@
+Dialect: sdas
+Overrides:
+  - Files: ["asxxxx*"]
+    Dialect: asxxxx
+  - Files: ["rgbds*"]
+    Dialect: rgbds
+  - Files: ["gas-x86*"]
+    Dialect: gas-x86
+  - Files: ["gas-arm*"]
+    Dialect: gas-arm
+  - Files: ["gas-aarch64*"]
+    Dialect: gas-aarch64
+  - Files: ["gas-riscv*"]
+    Dialect: gas-riscv
+  - Files: ["nasm*"]
+    Dialect: nasm
+  - Files: ["masm*"]
+    Dialect: masm
+  - Files: ["fasm*"]
+    Dialect: fasm
+  - Files: ["go*"]
+    Dialect: go
+  - Files: ["ca65*"]
+    Dialect: ca65
+  - Files: ["z88dk*"]
+    Dialect: z88dk

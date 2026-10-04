@@ -1,0 +1,5 @@
+comment = [';']
+
+[[operands]]
+of = ['fcc']
+literal = [{ begin = '(\S)', end = '\1' }]

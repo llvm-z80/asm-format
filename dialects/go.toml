@@ -1,0 +1,17 @@
+# The Go assembler.
+
+comment = ['//', { begin = '/\*', end = '\*/', multiline = true }]
+literal = [
+    { begin = '"', end = '"', escape = '\' },
+    { begin = "'", end = "'", escape = '\' },
+]
+label = ['[\w\x80-\xFF]+:']
+separator = [';']
+continuation = ['\\']
+
+directive = ['text', 'data', 'globl', 'pcdata', 'funcdata']
+
+[[block]]
+begin = ['#ifdef', '#ifndef']
+middle = ['#else']
+end = ['#endif']

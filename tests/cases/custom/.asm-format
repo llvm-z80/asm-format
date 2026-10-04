@@ -1,0 +1,21 @@
+Overrides:
+  - Files: ["data-labels.asm"]
+    Dialect: data-labels
+  - Files: ["positional.asm"]
+    Dialect: positional
+  - Files: ["any-delimiter.asm"]
+    Dialect: any-delimiter
+  - Files: ["nested-literals.asm"]
+    Dialect: nested-literals
+  - Files: ["escape.asm"]
+    Dialect: escape
+  - Files: ["mnemonic-pattern.asm"]
+    Dialect: mnemonic-pattern
+  - Files: ["delimited-comment.asm"]
+    Dialect: delimited-comment
+  - Files: ["separator.asm"]
+    Dialect: separator
+  - Files: ["comma-continuation.asm"]
+    Dialect: comma-continuation
+  - Files: ["cards.asm"]
+    Dialect: cards

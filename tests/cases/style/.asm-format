@@ -1,0 +1,98 @@
+Dialect: sdas
+Overrides:
+  - Files: ["indent-width.asm"]
+    IndentWidth: 4
+    OperandColumn: 12
+    CommentColumn: 28
+  - Files: ["operand-column-0.asm"]
+    OperandColumn: 0
+  - Files: ["comment-column.asm"]
+    CommentColumn: 28
+    AlignTrailingComments: None
+  - Files: ["spaces-before-trailing-comments.asm"]
+    CommentColumn: 28
+    SpacesBeforeTrailingComments: 2
+    AlignTrailingComments: None
+  - Files: ["space-after-comma-false.asm"]
+    SpaceAfterComma: false
+  - Files: ["indent-comments-false.asm"]
+    IndentComments: false
+  - Files: ["use-tab-always.asm"]
+    UseTab: Always
+  - Files: ["use-tab-for-indentation.asm"]
+    UseTab: ForIndentation
+  - Files: ["tab-width.asm"]
+    UseTab: Always
+    TabWidth: 4
+  - Files: ["max-empty-lines-to-keep-0.asm"]
+    MaxEmptyLinesToKeep: 0
+  - Files: ["max-empty-lines-to-keep-2.asm"]
+    MaxEmptyLinesToKeep: 2
+  - Files: ["insert-newline-at-eof-false.asm"]
+    InsertNewlineAtEOF: false
+  - Files: ["disable-format.asm"]
+    DisableFormat: true
+  - Files: ["align-trailing-comments-over-empty-lines.asm"]
+    MaxEmptyLinesToKeep: 2
+    AlignTrailingComments:
+      OverEmptyLines: 1
+  - Files: ["align-trailing-comments-no-tab.asm"]
+    AlignTrailingComments: {AlignToTab: false}
+  - Files: ["align-trailing-comments-none.asm"]
+    AlignTrailingComments: None
+  - Files: ["align-consecutive-mnemonics*.asm"]
+    Dialect: nasm
+  - Files: ["align-consecutive-mnemonics-none.asm"]
+    AlignConsecutiveMnemonics: None
+  - Files: ["align-consecutive-operands-none.asm"]
+    AlignConsecutiveOperands: None
+  - Files: ["align-escaped-newlines*.asm", "continuation-indent-width.asm"]
+    Dialect: nasm
+  - Files: ["align-escaped-newlines-none.asm"]
+    AlignEscapedNewlines: None
+  - Files: ["align-escaped-newlines-left-with-last-line.asm"]
+    AlignEscapedNewlines: LeftWithLastLine
+  - Files: ["continuation-indent-width.asm"]
+    ContinuationIndentWidth: 4
+  - Files: ["keep-empty-lines.asm"]
+    KeepEmptyLines:
+      AtStartOfFile: false
+      AtEndOfFile: true
+  - Files: ["line-ending-*.asm"]
+    Dialect: gas-x86
+  - Files: ["line-ending-lf.asm"]
+    LineEnding: LF
+  - Files: ["line-ending-derive-crlf.asm"]
+    LineEnding: DeriveCRLF
+  - Files: ["line-ending-derive-lf.asm"]
+    LineEnding: DeriveLF
+  - Files: ["line-ending-string.asm"]
+    Dialect: rgbds
+    LineEnding: LF
+  - Files: ["align-array-of-operands-none.asm"]
+    AlignArrayOfOperands: None
+  - Files: ["align-array-of-operands-max-padding.asm"]
+    AlignArrayOfOperands: {MaxPadding: 8}
+  - Files: ["indent-blocks-false.asm"]
+    IndentBlocks: false
+  - Files: ["block-indent-width.asm"]
+    BlockIndentWidth: 4
+  - Files: ["directive-operand-column.asm"]
+    Dialect: rgbds
+    IndentWidth: 4
+    OperandColumn: 12
+    DirectiveOperandColumn: 0
+    BlockIndentWidth: 4
+    SpaceAfterComma: false
+  - Files: ["align-array-of-operands-right-first.asm"]
+    Dialect: nasm
+    IndentWidth: 4
+    OperandColumn: 14
+    AlignArrayOfOperands: RightFirst
+  - Files: ["align-array-of-operands-right.asm"]
+    AlignArrayOfOperands: Right
+  - Files: ["align-array-of-operands-numbers.asm"]
+    AlignArrayOfOperands: {Numbers: Right}
+  - Files: ["align-array-of-operands-numbers-gas.asm"]
+    Dialect: gas-x86
+    AlignArrayOfOperands: {Numbers: Right}

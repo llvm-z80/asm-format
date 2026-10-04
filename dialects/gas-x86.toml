@@ -1,0 +1,32 @@
+# GNU as for x86.
+
+comment = [
+    '#',
+    '//',
+    { begin = '^#.*\\$', end = '(?:^|[^\\])$', multiline = true },
+    { begin = '/\*', end = '\*/', multiline = true },
+    '^/(?:[^*]|$)',
+]
+literal = [
+    { begin = '"', end = '"', escape = '\' },
+    { begin = '''\B'(?:\\(?:[0-7]{1,3}|[xX][0-9A-Fa-f]+|.)|.)'?''' },
+]
+label = ['(?:[\w.$]+|"(?:[^"\\]|\\.)*"):']
+separator = [';']
+continuation = ['\\']
+mnemonic = '(?i)(?:(?:\{\w+\}|rep(?:n?[ez])?|lock|notrack|bnd|xacquire|xrelease|data(?:16|32)|addr(?:16|32)|rex(?:\.\w+)?)\s+)*\S+'
+
+directive = ['.*']
+
+[[block]]
+begin = ['.if*']
+middle = ['.elseif', '.else']
+end = ['.endif']
+
+[[block]]
+begin = ['.macro']
+end = ['.endm']
+
+[[block]]
+begin = ['.rept', '.irp', '.irpc']
+end = ['.endr']

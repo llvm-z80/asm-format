@@ -1,0 +1,5 @@
+comment = ['^\*']
+literal = ["'"]
+label = ['^\S+']
+positional = true
+continuation = [{ column = 72 }]

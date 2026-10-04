@@ -1,0 +1,3 @@
+comment = [';']
+literal = ['"']
+label = ['\w+:', { begin = '\w+', before = ['db', 'equ'] }]
